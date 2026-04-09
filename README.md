@@ -47,3 +47,31 @@ styles/element/index.scss
         }),
 ```
 
+## 2. axios
+
+```sh
+npm i axios
+```
+
+引入axios
+
+```js
+import axios from "axios";
+
+const httpInstance = axios.create({
+    baseURL: 'https://pcapi-xiaotuxian-front-devtest.itheima.net/home/category/head',
+    timeout: 5000
+})
+
+// axios请求拦截器
+httpInstance.interceptors.request.use(config => {
+    return config
+}, e => Promise.reject(e))
+
+// axios响应式拦截器
+httpInstance.interceptors.response.use(res => res.data, e => {
+    return Promise.reject(e)
+})
+
+export default httpInstance;
+```
