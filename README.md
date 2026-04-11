@@ -126,4 +126,27 @@ const categoryStore = useCategoryStore();
 </li>
 ```
 
-a
+
+
+## 4. 部分页面实现
+
+### 4.1 轮播图
+
+如果后端接口是图片地址是*http*的话，控制台可能会报错
+
+```
+ was loaded over a secure connection, but the file at '
+```
+
+在后面加入切片强行加s
+
+```vue
+      <img :src="item.imgUrl.replace('http:', '')" alt="">
+```
+
+
+
+## 5. 组件封装
+
+把可复用的结构只写一次，把可能发生变化的部分抽象成组件参数(**props**/**插槽**)
+
