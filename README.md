@@ -78,4 +78,50 @@ export default httpInstance;
 
 
 
-## 3. 配置路由
+## 3. Pinia
+
+解决重复请求
+
+store.js
+
+```js
+export const useCategoryStore = defineStore('category', () => {
+    //导航列表的数据管理
+    const categoryList = ref();
+    /**
+     * 获取导航数据方法
+     * @returns {Promise<void>}
+     */
+    const getCategory = async () => {
+        const res = await getCategoryAPI();
+        categoryList.value = res.result;
+    }
+
+    return {
+        categoryList,
+        getCategory
+    }
+})
+```
+
+在父组件中 onMounted引入
+
+**触发action**
+
+```js
+const categoryStore = useCategoryStore();
+onMounted(() => useCategoryStore().getCategory())
+```
+
+在子组件中
+
+```js
+//使用pinia中的数据
+const categoryStore = useCategoryStore();
+```
+
+```vue
+<li class="home" v-for="(item,index) in categoryStore.categoryList" :key="item.id">
+  <RouterLink to="/">{{item.name}}</RouterLink>
+</li>
+```
