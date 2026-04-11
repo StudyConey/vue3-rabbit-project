@@ -5,6 +5,7 @@ import HomeBanner from "@/views/Home/components/HomeBanner.vue";
 import HomeNew from "@/views/Home/components/HomeNew.vue";
 import HomeHot from "@/views/Home/components/HomeHot.vue";
 import HomeProduct from "@/views/Home/components/HomeProduct.vue";
+import HomePanel from "@/views/Home/components/HomePanel.vue";
 </script>
 
 <template>

@@ -150,3 +150,5 @@ const categoryStore = useCategoryStore();
 
 把可复用的结构只写一次，把可能发生变化的部分抽象成组件参数(**props**/**插槽**)
 
+- 纯文本可用props
+- 复杂模板可用插槽
