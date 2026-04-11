@@ -140,8 +140,83 @@ const categoryStore = useCategoryStore();
 
 在后面加入切片强行加s
 
-```vue
+```ue
       <img :src="item.imgUrl.replace('http:', '')" alt="">
+```
+
+
+
+### 4.2 懒加载
+
+在main.js中加入
+
+```js
+//定义全局指令
+app.directive('img-lazy',{
+    /**
+     * @param el 绑定指令的那个元素 img
+     * @param binding.value 指令等于后面绑定的表达式 图片url
+     */
+    mounted(el,binding){
+        console.log(el,binding.value);
+        //监听 
+        useIntersectionObserver(
+            el,
+            ([{isIntersecting}])=>{
+                console.log(isIntersecting); //布尔值
+                if(isIntersecting){
+                    el.src=binding.value
+                }
+            }
+        )
+    }
+})
+```
+
+```html
+<img v-img-lazy="item.picture" :src="item.picture" alt="" />
+```
+
+优化 作为插件使用
+
+```js
+//定义懒加载插件
+
+import {useIntersectionObserver} from "@vueuse/core";
+
+export const lazyPlugin = {
+    install(app) {
+        //懒加载指令逻辑
+        //定义全局指令
+        app.directive('img-lazy', {
+            /**
+             * @param el 绑定指令的那个元素 img
+             * @param binding.value 指令等于后面绑定的表达式 图片url
+             */
+            mounted(el, binding) {
+                console.log(el, binding.value);
+                //监听
+                const {stop} = useIntersectionObserver(
+                    el,
+                    ([{isIntersecting}]) => {
+                        console.log(isIntersecting); //布尔值
+                        if (isIntersecting) {
+                            el.src = binding.value
+                            stop()
+                        }
+                    }
+                )
+            }
+        })
+    }
+}
+```
+
+在main.js进行注册
+
+```js
+import {lazyPlugin} from '@/directives'
+app.use(createPinia())
 ```
 
 
