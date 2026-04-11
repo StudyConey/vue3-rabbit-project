@@ -4,6 +4,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import {getCategory} from "@/apis/testApi.js";
+import '@/styles/common.scss'
 
 const app = createApp(App)
 

@@ -3,15 +3,15 @@
 </script>
 
 <template>
-  <div class="button-example">
-    <div class="button-row">
-      <el-button>Default</el-button>
-      <el-button type="primary">Primary</el-button>
-
-    </div>
-    </div>
+  <!--  一级路由出口-->
+  <RouterView/>
+  <div class="test">
+    test scss
+  </div>
 </template>
 
-<style>
-
+<style scoped lang="scss">
+.test {
+  color: $priceColor
+}
 </style>

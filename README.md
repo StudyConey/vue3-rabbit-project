@@ -75,3 +75,7 @@ httpInstance.interceptors.response.use(res => res.data, e => {
 
 export default httpInstance;
 ```
+
+
+
+## 3. 配置路由
