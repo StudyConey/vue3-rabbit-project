@@ -265,6 +265,55 @@ defineProps({
 </ul>
 ```
 
+
+
+## 6. 分类
+
+### 6.1  路由
+
+```js
+path: 'category/:id',
+```
+
+在组件中
+
+```vue
+<RouterLink :to="`/category/${item.id}`">{{item.name}}</RouterLink>
+```
+
+### 6.2 面包屑实现
+
+axios封装
+
+**request**要使用封装后的引用
+
+```js
+// import {request} from "axios";
+import request from "@/utils/https.js";
+
+export function getCategoryAPI(id) {
+    return request({
+        url: '/category',
+        params:{
+            id
+        }
+    })
+}
+```
+
+实现接口
+
+```js
+import {useRoute} from "vue-router";
+
+const categoryData = ref({})
+const route = useRoute()
+const getCategory = async () => {
+  const res = await getCategoryAPI(route.params.id);
+  categoryData.value = res.result;
+}
+```
+
 # 总结
 
 熟练使用axios
