@@ -19,3 +19,23 @@ export function findNewAPI() {
         url: '/home/new'
     })
 }
+
+/**
+ * 获取人气推荐
+ * @returns {*}
+ */
+export function getHotAPI() {
+    return httpInstance({
+        url: '/home/hot'
+    })
+}
+
+/**
+ * 获取所有商品模块
+ * @returns {*}
+ */
+export function getGoodsAPI() {
+    return httpInstance({
+        url: '/home/goods'
+    })
+}

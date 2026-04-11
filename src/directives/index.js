@@ -12,12 +12,12 @@ export const lazyPlugin = {
              * @param binding.value 指令等于后面绑定的表达式 图片url
              */
             mounted(el, binding) {
-                console.log(el, binding.value);
+                // console.log(el, binding.value);
                 //监听
                 const {stop} = useIntersectionObserver(
                     el,
                     ([{isIntersecting}]) => {
-                        console.log(isIntersecting); //布尔值
+                        // console.log(isIntersecting); //布尔值
                         if (isIntersecting) {
                             el.src = binding.value
                             stop()
