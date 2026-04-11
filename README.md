@@ -227,3 +227,48 @@ app.use(createPinia())
 
 - 纯文本可用props
 - 复杂模板可用插槽
+
+思想：要把显示的数据对象设计成props参数
+
+### 5.1 创建props数据对象
+
+```vue
+defineProps({
+  good: {
+    type: Object,
+    default: () => {
+    }
+  }
+})
+```
+
+### 5.2 业务代码抽离
+
+```vue
+<template>
+  <RouterLink to="/" class="goods-item">
+    <img v-img-lazy="good.picture" alt=""/>
+    <p class="name ellipsis">{{ good.name }}</p>
+    <p class="desc ellipsis">{{ good.desc }}</p>
+    <p class="price">&yen;{{ good.price }}</p>
+  </RouterLink>
+</template>
+```
+
+### 5.3 在原页面使用
+
+```vue
+<ul class="goods-list">
+  <li v-for="good in cate.goods" :key="good.id">
+    <GoodsItem :good="good" />
+  </li>
+</ul>
+```
+
+# 总结
+
+熟练使用axios
+
+- 封装api
+- 调用接口
+- 渲染
