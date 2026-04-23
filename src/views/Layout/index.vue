@@ -18,7 +18,7 @@ onMounted(() => useCategoryStore().getCategory())
   <LayoutNav/>
   <LayoutHeader/>
   <!--  二级路由出口-->
-  <RouterView/>
+  <RouterView :key="$route.fullPath"/>
   <LayoutFooter/>
 </template>
 

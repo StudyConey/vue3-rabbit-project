@@ -314,6 +314,46 @@ const getCategory = async () => {
 }
 ```
 
+
+
+### 6.3 路由缓存
+
+#### 方案1：**给 router-view添加key**
+
+```vue
+<RouterLink :key="$route.fullPath">
+```
+
+#### 方案2：**使用*beforeRouteUpdate*导航钩子**
+
+*beforeRouteUpdate*钩子函数可以在每次路由更新前执行，在回调中执行需要数据更新业务逻辑即可，或使用beforeRouteUpdate导航首位，也可以取消导航
+
+```js
+const getCategory = async (id=route.params.id) => {
+  const res = await getCategoryAPI(id);
+  categoryData.value = res.result;
+}
+
+// 目标：路由参数变化的时候，可以把分类数据接口重新发送
+onBeforeRouteUpdate((to)=>{
+  console.log('路由变化了');
+  getCategory(to.params.id)
+})
+```
+
+
+
+## 7. 逻辑函数拆分业务
+
+基于逻辑函数拆分业务是指把**同一个组件中独立的业务代码通过函数做封装处理**，提升**代码的可维护性**
+
+- 1.按照业务声明以**‘use’**打头的逻辑函数
+- 2.把**独立的业务逻辑**封装到各个函数内部
+- 3.函数内部把组件中需要用到的数据或者方法**return出去**
+- 4.在组**件中调用函数**把数据或者方法组合回来使用
+
+
+
 # 总结
 
 熟练使用axios

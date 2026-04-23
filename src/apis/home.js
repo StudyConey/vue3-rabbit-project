@@ -2,11 +2,17 @@ import httpInstance from "@/utils/https.js";
 
 /**
  * 轮播图
+ * @param params
  * @returns {*}
  */
-export function getBannerAPI() {
+export function getBannerAPI(params = {}) {
+    //默认：1，商品：2
+    const {distributionSite = '1'} = params;
     return httpInstance({
-        url: '/home/banner'
+        url: '/home/banner',
+        params: {
+            distributionSite
+        }
     })
 }
 
