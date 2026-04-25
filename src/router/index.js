@@ -5,6 +5,7 @@ import Login from "@/views/Login/index.vue";
 import Home from "@/views/Home/index.vue";
 import Category from "@/views/Category/index.vue";
 import SubCategory from "@/views/SubCategory/index.vue";
+import Detail from "@/views/Detail/index.vue";
 
 
 const router = createRouter({
@@ -24,7 +25,11 @@ const router = createRouter({
                 },
                 {
                     path: 'category/sub/:id',
-                    component: SubCategory ,
+                    component: SubCategory,
+                },
+                {
+                    path: 'detail/:id',
+                    component: Detail,
                 }
             ]
         },
@@ -34,9 +39,9 @@ const router = createRouter({
         }
     ],
     //路由滚动配置项
-    scrollBehavior(){
-        return{
-            top:0
+    scrollBehavior() {
+        return {
+            top: 0
         }
     }
 })
